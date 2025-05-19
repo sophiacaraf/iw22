@@ -6,11 +6,11 @@
     <title>Formularios</title>
 </head>
 <body>
-    <form action="salvar.html" method="post">
+    <form action="salvar.html" method="post" onsubmit="return ValidarFormulario()" >
         <label>Cep</label>
-        <input type="text" name="cep" id="cep" class="campo" /><br><br>
+        <input type="text" value="" name="cep" id="cep" class="campo" /><br><br>
         <label>Endereço</label>
-        <input type="text" name="endereco" id="endereco" class="campo" /> <br><br>
+        <input type="text" value="" name="endereco" id="endereco" class="campo" /> <br><br>
         <label>Número</label>
         <input type="text" name="numero" id="numero" class="campo" /><br><br>
         <label>Bairro</label>
@@ -24,19 +24,28 @@
         </button>
     </form>
 
-
- <script>
-
-     function ValidarFormulario() {
-        var cep = document.getElementById ('cep')
-        if (cep.value == "")
+    <script>
+        function ValidarFormulario()
         {
-            alert('Campo CEP deve ser preenchido')
-            return false
-        }
-     }
+            var cep = document.getElementById('cep')
+            if (cep.value == "")
+            {
+                alert('Campo CEP deve ser preenchido')
+                return false
+            }
 
-     
- </script>
+            var endereco = document.getElementById('endereco')
+            if (endereco.value == "")
+            {
+                alert('Campo ENDEREÇO deve ser preenchido')
+                return false
+            }
+
+
+
+        }
+
+    </script>
+ 
 </body>
 </html>
