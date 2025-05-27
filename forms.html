@@ -6,11 +6,15 @@
     <title>Formularios</title>
 
     <style>
-
-  .erro {
-      border: 2px solid red;
+         .erro-borda {
+        border: 2px solid red;
     }
 
+    .mensagem-erro {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }
     </style>
 </head>
 <body>
@@ -39,85 +43,83 @@
     </form>
 
     <script>
+ 
 
-        function removerErro(idCampo) {
-            const campo = document.getElementById(idCampo);
-            const mensagemErro = document.getElementById('erro' + idCampo);
- 
-            if (campo.value.trim() !== "") {
-                campo.classList.remove('borda-vermelha');
-                if (mensagemErro) {
-                    mensagemErro.style.display = 'none';
-                }
+ function mostrarErro(campo, mensagem) {
+            campo.classList.add("erro-borda");
+
+            if (!campo.nextElementSibling || !campo.nextElementSibling.classList.contains("mensagem-erro")) {
+                var divErro = document.createElement("div");
+                divErro.className = "mensagem-erro";
+                divErro.innerText = mensagem;
+                campo.parentNode.insertBefore(divErro, campo.nextSibling);
             }
+
+            campo.addEventListener("input", function () {
+                if (campo.value.trim() !== "") {
+                    campo.classList.remove("erro-borda");
+                    if (campo.nextElementSibling && campo.nextElementSibling.classList.contains("mensagem-erro")) {
+                        campo.nextElementSibling.remove();
+                    }
+                }
+            });
         }
- 
+
 
 
         function ValidarFormulario()
         {
-            var campos = document.getElementsByClassName('campo');
-            for (var i = 0; i < campos.length; i++) {
-                campos[i].classList.remove('erro');
-            }
-
-
-
             var cep = document.getElementById('cep')
             if (cep.value == "")
             {
-        
+                alert('Campo CEP deve ser preenchido');
 
-                alert('Campo CEP deve ser preenchido')
+                mostrarErro(cep, 'Campo não pode estar em branco');
+
                 return false
             }
 
             var endereco = document.getElementById('endereco')
             if (endereco.value == "")
             {
-              
-
                 alert('Campo ENDEREÇO deve ser preenchido')
+                mostrarErro(endereco, 'Campo não pode estar em branco');
                 return false
             }
 
             var numero = document.getElementById('numero')
             if (numero.value == "")
             {
-                
-
                 alert('Campo numero deve ser preenchido')
+                mostrarErro(numero, 'Campo não pode estar em branco')
                 return false
             }
 
             var bairro = document.getElementById('bairro')
             if (bairro.value == "")
             {
-                
-
                 alert('Campo bairro deve ser preenchido')
+                mostrarErro(bairro, 'Campo não pode estar em branco')
                 return false
             }
 
             var cidade = document.getElementById('cidade')
             if (cidade.value == "")
             {
-            
-
                 alert('Campo cidade deve ser preenchido')
+                mostrarErro(cidade, 'Campo não pode estar em branco')
                 return false
             }
 
             var estado = document.getElementById('estado')
             if (estado.value == "")
             {
-
-
                 alert('Campo estado deve ser preenchido')
+                mostrarErro(estado, 'Campo não pode estar em branco')
+                
                 return false
             }
-            
-            return true;
+     
         }
 
     </script>
