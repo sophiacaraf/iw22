@@ -1,15 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objeto</title>
+</head>
+<body>
+    <div id="coresCarros"></div>
 <script>
-    var cadeira= { 
+      var carro = {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "ano": 2025,
+      "mostrarModelo": () => { document.write("Modelo: " + carro.modelo + "<br>") }
+    };
 
-        "cor": "Branca",
-        "girar": () => {alert("Oiii")},
-        "Subir": () => { document.write("Subindo")},
-        "descendo" : () => {console.log ("descendo")},
-        "andar": () => {alert("Sentido: "+direção)} 
-        
-        }
+    carro.mostrarModelo();
 
-        cadeira.girar()
-        cadeira.descendo()
-        cadeira.andar("Em frente")
+    carro.ano = 2024;
+
+    carro.cor = "vermelho";
+
+      var carro2 = {
+      "marca": "Ford",
+      "modelo": "Ka",
+      "ano": 2021,
+      "cor": "azul"
+    };
+
+        var carro3 = {
+      "marca": "Honda",
+      "modelo": "Civic",
+      "ano": 2023,
+      "cor": "preto"
+    };
+
+    var div = document.getElementById("coresCarros");
+    div.innerText = "Cores dos carros: " + carro.cor + ", " + carro2.cor + ", " + carro3.cor;
+
+     var pessoa = {
+      "nome": "Maria",
+      "endereco": {
+        "rua": "Av. Central",
+        "numero": 456,
+        "cidade": "Rio de Janeiro"
+      },
+      "mostrarCidade": () => { document.write("Cidade: " + pessoa.endereco.cidade) }
+    };
+
+    pessoa.mostrarCidade();
+
 </script>
+</body>
+</html>
