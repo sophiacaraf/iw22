@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokédex</title>
+  <style>
+
+
+    body {
+      font-family: Arial;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    #pokedex {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      text-align: center;
+      width: 250px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="pokedex">
+  <h1 id="nome">Nome</h1>
+  <img id="imagem" width="150" />
+  <p>Número: <span id="numero"></span></p>
+  <p>Tipo: <span id="tipo"></span></p>
+  <p>Ataque: <span id="ataque"></span></p>
+  <p>Defesa: <span id="defesa"></span></p>
+  <p>Evoluções: <span id="evolucoes"></span></p>
+
+  <button onclick="anterior()">Anterior</button>
+  <button onclick="proximo()">Próximo</button>
+</div>
+
+<script>
+ 
+  var bulbasaur = {
+    nome: "Bulbasaur",
+    numero: 1,
+    tipo: "Grama/Veneno",
+    ataque: 49,
+    defesa: 49,
+    imagem: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    evolucoes: ["Ivysaur", "Venusaur"],
+    mostrar: function() {
+      atualizarTela(this);
+    }
+  };
+
+  var charmander = {
+    nome: "Charmander",
+    numero: 4,
+    tipo: "Fogo",
+    ataque: 52,
+    defesa: 43,
+    imagem: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    evolucoes: ["Charmeleon", "Charizard"],
+    mostrar: function() {
+      atualizarTela(this);
+    }
+  };
+
+  var squirtle = {
+    nome: "Squirtle",
+    numero: 7,
+    tipo: "Água",
+    ataque: 48,
+    defesa: 65,
+    imagem: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    evolucoes: ["Wartortle", "Blastoise"],
+    mostrar: function() {
+      atualizarTela(this);
+    }
+  };
+
+  var pokemons = [bulbasaur, charmander, squirtle];
+  var indice = 0;
+
+  function atualizarTela(pokemon) {
+    document.getElementById("nome").textContent = pokemon.nome;
+    document.getElementById("numero").textContent = pokemon.numero;
+    document.getElementById("tipo").textContent = pokemon.tipo;
+    document.getElementById("ataque").textContent = pokemon.ataque;
+    document.getElementById("defesa").textContent = pokemon.defesa;
+    document.getElementById("imagem").src = pokemon.imagem;
+    document.getElementById("evolucoes").textContent = pokemon.evolucoes.join(", ");
+  }
+
+  function proximo() {
+    if (indice < pokemons.length - 1) {
+      indice++;
+      pokemons[indice].mostrar();
+    }
+  }
+
+  function anterior() {
+    if (indice > 0) {
+      indice--;
+      pokemons[indice].mostrar();
+    }
+  }
+
+  pokemons[indice].mostrar(); 
+</script>
+
+</body>
+</html>
